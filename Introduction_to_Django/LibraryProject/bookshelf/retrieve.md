@@ -1,9 +1,4 @@
-# Retrieve Operation
-
-```python
-from bookshelf.models import Book
-
-# Retrieve and display all Book instances
-books = Book.objects.all()
-for book in books:
-    print(book.title, book.author, book.publication_year)
+# Retrieve the book with title "1984"
+book = Book.objects.get(title="1984")
+print(book)
+# Expected output: Book object (1)
