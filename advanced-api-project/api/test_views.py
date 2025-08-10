@@ -5,18 +5,20 @@ from .models import Book, Author
 from django.contrib.auth.models import User
 
 class BookTests(APITestCase):
-    def setUp(self):
-        # Create test data
-        self.user = User.objects.create_user(
-            username='testuser', 
-            password='testpass123'
-        )
-        self.author = Author.objects.create(name='Test Author')
-        self.book = Book.objects.create(
-            title='Test Book',
-            publication_year=2020,
-            author=self.author
-        )
+   def setUp(self):
+    # Create test data
+    self.user = User.objects.create_user(
+        username='testuser', 
+        password='testpass123'
+    )
+    self.client.login(username='testuser', password='testpass123')
+    self.author = Author.objects.create(name='Test Author')
+    self.book = Book.objects.create(
+        title='Test Book',
+        publication_year=2020,
+        author=self.author
+    )
+
 
     def test_list_books(self):
         url = reverse('book-list')
